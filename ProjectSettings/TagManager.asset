@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - ground
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 921501569
+    locked: 0
+  - name: Background
+    uniqueID: 2221632201
+    locked: 0
+  - name: Midground
+    uniqueID: 1017585617
+    locked: 0
+  - name: Foreground
+    uniqueID: 1556557289
     locked: 0
