@@ -11,13 +11,17 @@ public class Controls : MonoBehaviour
     public float jumpVelocity = 25f;
     private float jumpForce = 1000f;
     public Rigidbody2D rb;
+    private Vector2 respawnpt;
+    private int score = 0;
+    public TMPro.TextMeshProUGUI scoreText;
+    public TMPro.TextMeshProUGUI levelCompleteText;
 
     //Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CircleCollider2D>();
-
+        respawnpt = transform.position; 
     }
 
     // Update is called once per frame
@@ -30,11 +34,33 @@ public class Controls : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpVelocity;
         }
+
+        scoreText.text = "Score: " + score;
     }
 
     private bool isGrounded() 
     {
         RaycastHit2D raycastHit2D = Physics2D.CircleCast(cc.bounds.center,cc.radius,Vector2.down,.1f,groundMask);
         return raycastHit2D.collider != null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if ("Respawn".Equals(collision.gameObject.tag))
+        {
+            transform.position = respawnpt;
+            if (score > 0) score -= 2;
+        }
+
+        if ("Coin".Equals(collision.gameObject.tag))
+        {
+            score += 5;
+        }
+
+        if ("Finish".Equals(collision.gameObject.tag)) 
+        {
+            Destroy(this.gameObject);
+            levelCompleteText.text = "Level\nComplete!";
+        }
     }
 }

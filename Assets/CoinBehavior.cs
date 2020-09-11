@@ -7,9 +7,9 @@ public class CoinBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collected a Coin!");
-        //if ("Player".Equals(collision.gameObject.tag))
-        //{
+        if ("Player".Equals(collision.gameObject.tag))
+        {
             Destroy(this.gameObject);
-        //}
+        }
     }
 }
